@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log in — ServiceHub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="nav">
+    <a href="index.html" class="nav-logo">ServiceHub</a>
+    <nav class="nav-links">
+      <a href="index.html">Browse</a>
+      <a href="login.html" class="active">Log in</a>
+      <a href="register.html" class="btn btn-sm btn-primary">Sign up</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="form-card">
+      <h2>Log in</h2>
+      <form id="login-form">
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" required>
+
+        <p class="form-error" id="login-error"></p>
+
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:20px;">Log in</button>
+      </form>
+      <p style="margin-top:16px; font-size:14px; color:var(--muted);">
+        Don't have an account? <a href="register.html">Sign up</a>
+      </p>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const errorEl = document.getElementById('login-error');
+      errorEl.textContent = '';
+      try {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const user = await AuthClient.login(email, password);
+        // Redirect based on role
+        if (user.role === 'client') window.location.href = 'dashboard-client.html';
+        else if (user.role === 'worker') window.location.href = 'dashboard-worker.html';
+        else if (user.role === 'admin') window.location.href = 'dashboard-admin.html';
+      } catch (err) {
+        errorEl.textContent = err.message || 'Login failed. Check your credentials.';
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
