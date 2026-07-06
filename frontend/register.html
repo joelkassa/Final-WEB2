@@ -24,9 +24,9 @@
       <h2>Create your account</h2>
 
       <label>I am signing up as a...</label>
-      <div style="display:flex; gap:10px; margin-top:6px;">
-        <button type="button" class="btn role-btn active" data-role="client" style="flex:1;">Client</button>
-        <button type="button" class="btn role-btn" data-role="worker" style="flex:1;">Worker / provider</button>
+      <div class="role-toggle">
+        <button type="button" class="btn role-btn active" data-role="client">Client</button>
+        <button type="button" class="btn role-btn" data-role="worker">Worker / provider</button>
       </div>
       <input type="hidden" id="role" value="client">
 
@@ -45,66 +45,20 @@
 
         <p class="form-error" id="register-error"></p>
 
-        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:20px;">Sign up</button>
+        <button type="submit" class="btn btn-primary btn-block">Sign up</button>
       </form>
-      <p style="margin-top:16px; font-size:14px; color:var(--muted);">
-        Already have an account? <a href="login.html">Log in</a>
+      <p class="link-row">
+        Already have an account? <a href="login.html">Log in</a> ·
+        <a href="forgot-password.html">Forgot password?</a>
       </p>
     </div>
   </main>
 
   <script src="js/api.js"></script>
   <script src="js/auth.js"></script>
-  <script>
-    // Role toggle buttons
-    document.querySelectorAll('.role-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById('role').value = btn.dataset.role;
-      });
-    });
-
-    document.getElementById('register-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const errorEl = document.getElementById('register-error');
-      errorEl.textContent = '';
-
-      const password = document.getElementById('password').value;
-      const confirm = document.getElementById('confirm').value;
-      if (password !== confirm) {
-        errorEl.textContent = 'Passwords do not match.';
-        return;
-      }
-
-      try {
-        const payload = {
-          name: document.getElementById('name').value,
-          email: document.getElementById('email').value,
-          password,
-          role: document.getElementById('role').value
-        };
-        const user = await AuthClient.register(payload);
-        if (user.role === 'worker') {
-          // Workers land on their dashboard to complete their profile next
-          window.location.href = 'dashboard-worker.html';
-        } else {
-          window.location.href = 'dashboard-client.html';
-        }
-      } catch (err) {
-        errorEl.textContent = err.message || 'Registration failed.';
-      }
-    });
-  </script>
+  <script src="js/register.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
 
 
 

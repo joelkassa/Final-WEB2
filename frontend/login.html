@@ -31,9 +31,10 @@
 
         <p class="form-error" id="login-error"></p>
 
-        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:20px;">Log in</button>
+        <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        <p class="link-row-right"><a href="forgot-password.html">Forgot your password?</a></p>
       </form>
-      <p style="margin-top:16px; font-size:14px; color:var(--muted);">
+      <p class="link-row">
         Don't have an account? <a href="register.html">Sign up</a>
       </p>
     </div>
@@ -41,34 +42,9 @@
 
   <script src="js/api.js"></script>
   <script src="js/auth.js"></script>
-  <script>
-    document.getElementById('login-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const errorEl = document.getElementById('login-error');
-      errorEl.textContent = '';
-      try {
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const user = await AuthClient.login(email, password);
-        // Redirect based on role
-        if (user.role === 'client') window.location.href = 'dashboard-client.html';
-        else if (user.role === 'worker') window.location.href = 'dashboard-worker.html';
-        else if (user.role === 'admin') window.location.href = 'dashboard-admin.html';
-      } catch (err) {
-        errorEl.textContent = err.message || 'Login failed. Check your credentials.';
-      }
-    });
-  </script>
+  <script src="js/login.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
 
 
 

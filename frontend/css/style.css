@@ -61,6 +61,7 @@ a { color: var(--accent-dark); text-decoration: none; }
 .btn-ghost { background: transparent; border-color: transparent; }
 .btn-danger { background: var(--danger); border-color: var(--danger); color: #fff; }
 .btn-sm { padding: 6px 14px; font-size: 13px; }
+.btn-block { width: 100%; margin-top: 20px; }
 
 /* Hero */
 .hero { padding: 48px 32px 24px; max-width: 760px; }
@@ -103,6 +104,7 @@ a { color: var(--accent-dark); text-decoration: none; }
 .worker-card-body { padding: 16px; }
 .worker-card-body h3 { font-size: 16px; margin-bottom: 2px; }
 .worker-card-cat { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+
 .rating-pill {
   display: inline-block;
   background: var(--amber-bg);
@@ -142,6 +144,15 @@ a { color: var(--accent-dark); text-decoration: none; }
   font-size: 14px;
 }
 .form-error { color: var(--danger); font-size: 13px; margin-top: 8px; }
+.success-text { color: var(--accent-dark); font-size: 14px; }
+.helper-text { color: var(--muted); font-size: 14px; }
+.link-row { margin-top: 16px; font-size: 14px; color: var(--muted); }
+.link-row-right { margin-top: 12px; font-size: 13px; text-align: right; }
+
+/* Role toggle (register page) */
+.role-toggle { display: flex; gap: 10px; margin-top: 6px; }
+.role-toggle .btn { flex: 1; }
+.role-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
 /* Tables (dashboards) */
 table { width: 100%; border-collapse: collapse; margin-top: 16px; }
@@ -149,25 +160,79 @@ th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--bo
 th { color: var(--muted); font-weight: 500; font-size: 13px; }
 
 .empty-state { color: var(--muted); padding: 24px 0; }
+.hidden { display: none; }
 
 .footer { padding: 24px 32px; color: var(--muted); font-size: 13px; text-align: center; }
-.role-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
+/* Worker profile page */
+.profile-header {
+  display: flex;
+  gap: 24px;
+  padding: 32px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.profile-photo {
+  width: 160px;
+  height: 160px;
+  border-radius: var(--radius);
+  object-fit: cover;
+  background: var(--border);
+}
+.profile-info h1 { font-size: 24px; }
+.profile-meta { color: var(--muted); font-size: 14px; margin-bottom: 8px; }
+.profile-price { font-weight: 500; margin-top: 8px; }
 
+.profile-section {
+  padding: 24px 32px;
+  border-bottom: 1px solid var(--border);
+  max-width: 900px;
+}
+.profile-section h2 { font-size: 18px; }
 
+.skill-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.skill-pill {
+  background: var(--accent-bg);
+  color: var(--accent-dark);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+}
 
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.portfolio-grid img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: var(--border);
+}
 
+.slot-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.slot-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 13px;
+  cursor: pointer;
+}
+.slot-btn.selected { background: var(--accent); border-color: var(--accent); color: #fff; }
 
+.booking-form { margin-top: 16px; max-width: 480px; }
 
-
-
-
-
-
-
-
-
-
+.review-card {
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+}
+.review-card:last-child { border-bottom: none; }
+.review-meta { display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; }
 
 
 
