@@ -12,6 +12,9 @@ const workerRoutes = require('./routes/workerRoutes');
 const skillRoutes = require('./routes/skillRoutes');
 const availabilityRoutes = require('./routes/availabilityRoutes');
 const { errorHandler } = require('./middleware/errorHandler');
+const bookingRoutes = require('./routes/bookingRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
+const reportRoutes = require('./routes/reportRoutes');
 
 const app = express();
 
@@ -31,6 +34,9 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/workers', workerRoutes);
 app.use('/api/skills', skillRoutes);
 app.use('/api/availability', availabilityRoutes);
+app.use('/api/bookings', bookingRoutes);
+app.use('/api', reviewRoutes);
+app.use('/api/reports', reportRoutes);
 
 app.get('/api/health', async (req, res) => {
   try {
