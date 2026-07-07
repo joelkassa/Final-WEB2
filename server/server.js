@@ -15,6 +15,7 @@ const { errorHandler } = require('./middleware/errorHandler');
 const bookingRoutes = require('./routes/bookingRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const reportRoutes = require('./routes/reportRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
 
@@ -37,6 +38,7 @@ app.use('/api/availability', availabilityRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api', reviewRoutes);
 app.use('/api/reports', reportRoutes);
+app.use('/api/admin', adminRoutes);
 
 app.get('/api/health', async (req, res) => {
   try {

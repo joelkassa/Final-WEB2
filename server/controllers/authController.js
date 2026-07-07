@@ -37,7 +37,7 @@ async function register(req, res) {
     const user = await User.createUser({ name, email, passwordHash, role });
 
     await issueTokens(res, user);
-    return res.status(201).json({ user: sanitizeUser(user) });
+    return res.status(201).json({ user: sanitizeUser(user), accessToken: res.locals.accessToken });
   } catch (err) {
     console.error('Register error:', err);
     return res.status(500).json({ message: 'Could not create account.' });
@@ -66,7 +66,7 @@ async function login(req, res) {
     }
 
     await issueTokens(res, user);
-    return res.json({ user: sanitizeUser(user) });
+    return res.json({ user: sanitizeUser(user), accessToken: res.locals.accessToken });
   } catch (err) {
     console.error('Login error:', err);
     return res.status(500).json({ message: 'Could not log in.' });
