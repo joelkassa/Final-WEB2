@@ -4,8 +4,14 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 const pool = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
+const categoryRoutes = require('./routes/categoryRoutes');
+const workerRoutes = require('./routes/workerRoutes');
+const skillRoutes = require('./routes/skillRoutes');
+const availabilityRoutes = require('./routes/availabilityRoutes');
+const { errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
 
@@ -15,10 +21,16 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
   origin: process.env.CLIENT_ORIGIN,
-  credentials: true // required so the browser sends/receives the refreshToken cookie
+  credentials: true
 }));
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 app.use('/api/auth', authRoutes);
+app.use('/api/categories', categoryRoutes);
+app.use('/api/workers', workerRoutes);
+app.use('/api/skills', skillRoutes);
+app.use('/api/availability', availabilityRoutes);
 
 app.get('/api/health', async (req, res) => {
   try {
@@ -29,13 +41,10 @@ app.get('/api/health', async (req, res) => {
   }
 });
 
+app.use(errorHandler);
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-
-
-
-
 
 
 
