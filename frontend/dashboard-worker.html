@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worker dashboard — Handy-Manny</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="nav">
+    <a href="index.html" class="nav-logo">Handy-Manny</a>
+    <nav class="nav-links">
+      <a href="index.html">Browse</a>
+      <a href="dashboard-worker.html" class="active">My dashboard</a>
+      <button id="nav-logout" class="btn btn-sm btn-ghost">Log out</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="dashboard-header">
+      <h1>My dashboard</h1>
+      <p>Manage your profile, availability, and bookings.</p>
+    </section>
+
+    <div id="approval-banner"></div>
+
+    <section class="dashboard-section" id="profile-section">
+      <h2>My profile</h2>
+      <p class="empty-state">Loading...</p>
+    </section>
+
+    <section class="dashboard-section" id="skills-section">
+      <h2>Skills & qualifications</h2>
+      <div class="chip-list" id="skills-list"></div>
+      <div class="chip-input-row">
+        <input type="text" id="new-skill-input" placeholder="e.g. Kitchen plumbing repair">
+        <button class="btn btn-sm btn-primary" id="add-skill-btn" type="button">Add</button>
+      </div>
+    </section>
+
+    <section class="dashboard-section" id="portfolio-section">
+      <h2>Portfolio images</h2>
+      <div class="portfolio-grid" id="portfolio-list"></div>
+      <div class="portfolio-upload-row">
+        <input type="file" id="portfolio-file-input" accept="image/*">
+        <button class="btn btn-sm btn-primary" id="upload-portfolio-btn" type="button">Upload</button>
+        <p class="form-error" id="portfolio-error"></p>
+      </div>
+    </section>
+
+    <section class="dashboard-section" id="availability-section">
+      <h2>Availability slots</h2>
+      <div id="slot-list"></div>
+      <div class="slot-add-row">
+        <div>
+          <label for="slot-date">Date</label>
+          <input type="date" id="slot-date">
+        </div>
+        <div>
+          <label for="slot-start">Start time</label>
+          <input type="time" id="slot-start">
+        </div>
+        <div>
+          <label for="slot-end">End time</label>
+          <input type="time" id="slot-end">
+        </div>
+        <button class="btn btn-sm btn-primary" id="add-slot-btn" type="button">Add slot</button>
+      </div>
+      <p class="form-error" id="slot-error"></p>
+    </section>
+
+    <section class="dashboard-header">
+      <h1>Incoming bookings</h1>
+    </section>
+    <section id="bookings-container">
+      <p class="empty-state">Loading...</p>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard-worker.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

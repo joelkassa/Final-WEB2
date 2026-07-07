@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My bookings — Handy-Manny</title>
+  <title>Admin — Handy-Manny</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
@@ -14,27 +14,44 @@
     <a href="index.html" class="nav-logo">Handy-Manny</a>
     <nav class="nav-links">
       <a href="index.html">Browse</a>
-      <a href="dashboard-client.html" class="active">My bookings</a>
+      <a href="dashboard-admin.html" class="active">Admin</a>
       <button id="nav-logout" class="btn btn-sm btn-ghost">Log out</button>
     </nav>
   </header>
 
   <main>
     <section class="dashboard-header">
-      <h1>My bookings</h1>
-      <p>Track your requests, leave reviews after a job is done, or report an issue.</p>
+      <h1>Admin dashboard</h1>
+      <p>Approve workers, resolve reports, and moderate the platform.</p>
     </section>
 
-    <section id="bookings-container">
-      <p class="empty-state">Loading your bookings...</p>
+    <section class="stat-grid" id="stat-grid"></section>
+
+    <nav class="admin-tabs">
+      <button class="admin-tab active" data-panel="panel-approvals">Pending approvals</button>
+      <button class="admin-tab" data-panel="panel-reports">Reports</button>
+    </nav>
+
+    <section class="admin-panel" id="panel-approvals">
+      <p class="empty-state">Loading...</p>
+    </section>
+
+    <section class="admin-panel hidden" id="panel-reports">
+      <p class="empty-state">Loading...</p>
     </section>
   </main>
 
   <script src="js/api.js"></script>
   <script src="js/auth.js"></script>
-  <script src="js/dashboard-client.js"></script>
+  <script src="js/dashboard-admin.js"></script>
 </body>
 </html>
+
+
+
+
+
+
 
 
 
