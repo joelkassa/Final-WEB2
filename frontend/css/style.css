@@ -234,6 +234,54 @@ th { color: var(--muted); font-weight: 500; font-size: 13px; }
 .review-card:last-child { border-bottom: none; }
 .review-meta { display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; }
 
+/* Dashboards (shared by client/worker/admin) */
+.dashboard-header { padding: 32px 32px 16px; }
+.dashboard-header p { color: var(--muted); }
+
+.booking-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin: 0 32px 16px;
+}
+.booking-card-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; }
+.booking-card-title { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+.booking-card-sub { color: var(--muted); font-size: 13px; margin-top: 2px; }
+.booking-card-detail { font-size: 14px; margin-top: 10px; }
+
+.status-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.status-pending { background: var(--amber-bg); color: var(--amber); }
+.status-accepted { background: var(--accent-bg); color: var(--accent-dark); }
+.status-declined { background: var(--danger-bg); color: var(--danger); }
+.status-cancelled { background: var(--border); color: var(--muted); }
+.status-completed { background: var(--ink); color: #fff; }
+
+.action-row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+
+.inline-form {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  max-width: 480px;
+}
+
+.star-select { display: flex; gap: 4px; margin: 6px 0; }
+.star-btn {
+  font-size: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--border);
+  padding: 0;
+}
+.star-btn.filled { color: var(--amber); }
 
 
 
