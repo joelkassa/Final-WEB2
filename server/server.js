@@ -1,11 +1,25 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
 const pool = require('./config/db');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
-app.use(express.json());
 
-// Temporary test route — we'll remove this once real routes exist.
+app.use(helmet());
+app.use(morgan('dev'));
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors({
+  origin: process.env.CLIENT_ORIGIN,
+  credentials: true // required so the browser sends/receives the refreshToken cookie
+}));
+
+app.use('/api/auth', authRoutes);
+
 app.get('/api/health', async (req, res) => {
   try {
     const result = await pool.query('SELECT NOW()');
@@ -17,6 +31,9 @@ app.get('/api/health', async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
+
 
 
 
