@@ -68,6 +68,14 @@ function buildBookingCard(booking) {
     actions.appendChild(cancelBtn);
   }
 
+  if (booking.status === 'accepted') {
+    const completeBtn = document.createElement('button');
+    completeBtn.className = 'btn btn-sm btn-primary';
+    completeBtn.textContent = 'Mark job as completed';
+    completeBtn.addEventListener('click', () => completeBooking(booking.id));
+    actions.appendChild(completeBtn);
+  }
+
   if (booking.status === 'completed' && !booking.hasReview) {
     const reviewBtn = document.createElement('button');
     reviewBtn.className = 'btn btn-sm btn-primary';
@@ -94,6 +102,16 @@ async function cancelBooking(bookingId, card) {
     loadBookings();
   } catch (err) {
     alert(err.message || 'Could not cancel this booking.');
+  }
+}
+
+async function completeBooking(bookingId) {
+  if (!confirm('Confirm the job is finished? You will be able to leave a review after this.')) return;
+  try {
+    await ApiClient.patch(`/bookings/${bookingId}/complete`);
+    loadBookings();
+  } catch (err) {
+    alert(err.message || 'Could not mark booking as completed.');
   }
 }
 
@@ -239,12 +257,6 @@ function makeLabel(forId, text) {
   label.textContent = text;
   return label;
 }
-
-
-
-
-
-
 
 
 

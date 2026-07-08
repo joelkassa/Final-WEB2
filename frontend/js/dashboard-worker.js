@@ -28,7 +28,6 @@ async function loadProfile() {
     renderPortfolio(currentProfile.portfolioImages || []);
     renderSlots(currentProfile.availabilitySlots || []);
   } catch (err) {
-    // No profile yet — first-time setup.
     currentProfile = null;
     renderProfileForm(section, null);
   }
@@ -176,7 +175,6 @@ async function saveProfile(e) {
   }
 }
 
-// ---- Skills ----
 function renderSkills(skills) {
   const list = document.getElementById('skills-list');
   list.innerHTML = '';
@@ -218,7 +216,6 @@ async function removeSkill(skillId) {
   }
 }
 
-// ---- Portfolio ----
 function renderPortfolio(images) {
   const list = document.getElementById('portfolio-list');
   list.innerHTML = '';
@@ -251,7 +248,6 @@ async function uploadPortfolioImage() {
   }
 }
 
-// ---- Availability slots ----
 function renderSlots(slots) {
   const list = document.getElementById('slot-list');
   list.innerHTML = '';
@@ -305,7 +301,6 @@ async function removeSlot(slotId) {
   }
 }
 
-// ---- Bookings ----
 async function loadBookings() {
   const container = document.getElementById('bookings-container');
   try {
@@ -367,14 +362,6 @@ function buildBookingCard(booking) {
     actions.appendChild(declineBtn);
   }
 
-  if (booking.status === 'accepted') {
-    const completeBtn = document.createElement('button');
-    completeBtn.className = 'btn btn-sm btn-primary';
-    completeBtn.textContent = 'Mark completed';
-    completeBtn.addEventListener('click', () => completeBooking(booking.id));
-    actions.appendChild(completeBtn);
-  }
-
   card.appendChild(actions);
   return card;
 }
@@ -385,15 +372,6 @@ async function updateBookingStatus(bookingId, status) {
     await loadBookings();
   } catch (err) {
     alert(err.message || 'Could not update booking.');
-  }
-}
-
-async function completeBooking(bookingId) {
-  try {
-    await ApiClient.patch(`/bookings/${bookingId}/complete`);
-    await loadBookings();
-  } catch (err) {
-    alert(err.message || 'Could not mark booking complete.');
   }
 }
 
@@ -409,21 +387,6 @@ function makeLabel(forId, text) {
   label.textContent = text;
   return label;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

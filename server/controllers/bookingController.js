@@ -116,9 +116,8 @@ async function completeBooking(req, res) {
     if (!booking) return res.status(404).json({ message: 'Booking not found.' });
 
     const isClient = req.user.role === 'client' && booking.client_id === req.user.userId;
-    const isWorker = req.user.role === 'worker' && booking.worker_user_id === req.user.userId;
-    if (!isClient && !isWorker) {
-      return res.status(403).json({ message: 'You are not part of this booking.' });
+    if (!isClient) {
+      return res.status(403).json({ message: 'Only the client can mark a booking as completed.' });
     }
     if (booking.status !== 'accepted') {
       return res.status(409).json({ message: 'Only accepted bookings can be marked complete.' });
@@ -133,8 +132,6 @@ async function completeBooking(req, res) {
 }
 
 module.exports = { createBooking, getMyBookings, updateBookingStatus, completeBooking };
-
-
 
 
 
