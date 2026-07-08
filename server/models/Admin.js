@@ -45,7 +45,96 @@ async function banUserById(id) {
   return result.rows.length > 0;
 }
 
-module.exports = { getDashboardStats, getPendingWorkers, approveWorkerProfile, banUserById };
+async function unbanUserById(id) {
+  const result = await pool.query(
+    'UPDATE users SET is_banned = false WHERE id = $1 RETURNING id',
+    [id]
+  );
+  return result.rows.length > 0;
+}
 
+async function deleteUserById(id) {
+  const result = await pool.query(
+    'DELETE FROM users WHERE id = $1 RETURNING id',
+    [id]
+  );
+  return result.rows.length > 0;
+}
 
+async function getAllUsers(filters) {
+  const conditions = [];
+  const params = [];
 
+  if (filters.role) {
+    params.push(filters.role);
+    conditions.push(`u.role = $${params.length}`);
+  }
+  if (filters.category) {
+    params.push(filters.category);
+    conditions.push(`wp.category_id = $${params.length}`);
+  }
+  if (filters.isBanned !== null) {
+    params.push(filters.isBanned);
+    conditions.push(`u.is_banned = $${params.length}`);
+  }
+  if (filters.search) {
+    params.push(`%${filters.search}%`);
+    conditions.push(`(u.name ILIKE $${params.length} OR u.email ILIKE $${params.length})`);
+  }
+
+  const whereClause = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
+
+  const query = `
+    SELECT u.id, u.name, u.email, u.role, u.is_banned, u.created_at,
+      wp.id AS worker_profile_id, wp.is_approved, wp.service_area,
+      c.name AS category_name, wp.custom_category
+    FROM users u
+    LEFT JOIN worker_profiles wp ON wp.user_id = u.id
+    LEFT JOIN categories c ON c.id = wp.category_id
+    ${whereClause}
+    ORDER BY u.created_at DESC
+  `;
+
+  const result = await pool.query(query, params);
+  return result.rows;
+}
+
+async function getAllBookings(filters) {
+  const conditions = [];
+  const params = [];
+
+  if (filters.status) {
+    params.push(filters.status);
+    conditions.push(`b.status = $${params.length}`);
+  }
+
+  const whereClause = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
+
+  const query = `
+    SELECT b.id, b.description, b.budget, b.agreement_notes, b.status, b.created_at,
+      cu.name AS client_name, cu.email AS client_email,
+      wu.name AS worker_name, wu.email AS worker_email,
+      s.slot_date, s.start_time, s.end_time
+    FROM bookings b
+    JOIN users cu ON cu.id = b.client_id
+    JOIN worker_profiles wp ON wp.id = b.worker_profile_id
+    JOIN users wu ON wu.id = wp.user_id
+    JOIN availability_slots s ON s.id = b.slot_id
+    ${whereClause}
+    ORDER BY b.created_at DESC
+  `;
+
+  const result = await pool.query(query, params);
+  return result.rows;
+}
+
+module.exports = {
+  getDashboardStats,
+  getPendingWorkers,
+  approveWorkerProfile,
+  banUserById,
+  unbanUserById,
+  deleteUserById,
+  getAllUsers,
+  getAllBookings
+};

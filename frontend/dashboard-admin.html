@@ -22,18 +22,61 @@
   <main>
     <section class="dashboard-header">
       <h1>Admin dashboard</h1>
-      <p>Approve workers, resolve reports, and moderate the platform.</p>
+      <p>Approve workers, manage accounts, review bookings, and resolve reports.</p>
     </section>
 
     <section class="stat-grid" id="stat-grid"></section>
 
     <nav class="admin-tabs">
       <button class="admin-tab active" data-panel="panel-approvals">Pending approvals</button>
+      <button class="admin-tab" data-panel="panel-users">Users</button>
+      <button class="admin-tab" data-panel="panel-bookings">Bookings</button>
       <button class="admin-tab" data-panel="panel-reports">Reports</button>
     </nav>
 
     <section class="admin-panel" id="panel-approvals">
       <p class="empty-state">Loading...</p>
+    </section>
+
+    <section class="admin-panel hidden" id="panel-users">
+      <div class="admin-filter-bar">
+        <input type="text" id="user-search" placeholder="Search name or email...">
+        <select id="user-role-filter">
+          <option value="">All roles</option>
+          <option value="client">Client</option>
+          <option value="worker">Worker</option>
+          <option value="admin">Admin</option>
+        </select>
+        <select id="user-category-filter">
+          <option value="">All categories</option>
+        </select>
+        <select id="user-banned-filter">
+          <option value="">Any status</option>
+          <option value="false">Active</option>
+          <option value="true">Banned</option>
+        </select>
+        <button class="btn btn-primary" id="user-filter-apply">Filter</button>
+      </div>
+      <div id="users-container">
+        <p class="empty-state">Loading...</p>
+      </div>
+    </section>
+
+    <section class="admin-panel hidden" id="panel-bookings">
+      <div class="admin-filter-bar">
+        <select id="booking-status-filter">
+          <option value="">All statuses</option>
+          <option value="pending">Pending</option>
+          <option value="accepted">Accepted</option>
+          <option value="declined">Declined</option>
+          <option value="completed">Completed</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+        <button class="btn btn-primary" id="booking-filter-apply">Filter</button>
+      </div>
+      <div id="bookings-container">
+        <p class="empty-state">Loading...</p>
+      </div>
     </section>
 
     <section class="admin-panel hidden" id="panel-reports">
@@ -46,12 +89,6 @@
   <script src="js/dashboard-admin.js"></script>
 </body>
 </html>
-
-
-
-
-
-
 
 
 

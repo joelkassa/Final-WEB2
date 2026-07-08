@@ -7,14 +7,21 @@ const { authorize } = require('../middleware/authorize');
 router.use(authenticate, authorize('admin'));
 
 router.get('/dashboard', adminController.getDashboard);
+
 router.get('/workers/pending', adminController.listPendingWorkers);
 router.patch('/workers/:id/approve', adminController.approveWorker);
+
+router.get('/users', adminController.listUsers);
+router.patch('/users/:id/ban', adminController.banUser);
+router.patch('/users/:id/unban', adminController.unbanUser);
+router.delete('/users/:id', adminController.deleteUser);
+
+router.get('/bookings', adminController.listBookings);
+
 router.get('/reports', adminController.listReports);
 router.patch('/reports/:id', adminController.updateReport);
-router.patch('/users/:id/ban', adminController.banUser);
 
 module.exports = router;
-
 
 
 
