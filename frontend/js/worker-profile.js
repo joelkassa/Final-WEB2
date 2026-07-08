@@ -43,11 +43,7 @@ function buildHeader(worker) {
   const section = document.createElement('section');
   section.className = 'profile-header';
 
-  const img = document.createElement('img');
-  img.className = 'profile-photo';
-  img.src = worker.photoUrl || 'assets/placeholder.png';
-  img.alt = worker.name;
-  section.appendChild(img);
+  section.appendChild(buildAvatar(worker.name, worker.photoUrl, true));
 
   const info = document.createElement('div');
   info.className = 'profile-info';
@@ -82,6 +78,21 @@ function buildHeader(worker) {
 
   section.appendChild(info);
   return section;
+}
+
+function buildAvatar(name, photoUrl, isProfilePage) {
+  if (photoUrl) {
+    const img = document.createElement('img');
+    img.src = photoUrl;
+    img.alt = name;
+    if (isProfilePage) img.className = 'profile-photo';
+    return img;
+  }
+  const div = document.createElement('div');
+  div.className = isProfilePage ? 'avatar-placeholder profile-photo' : 'avatar-placeholder';
+  const initials = name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  div.textContent = initials;
+  return div;
 }
 
 function buildBioSection(worker) {
@@ -288,7 +299,6 @@ function buildReviewsSection(reviews) {
   return section;
 }
 
-// Small DOM helpers to keep the builder functions above readable
 function makeNote(text) {
   const p = document.createElement('p');
   p.className = 'empty-state';
@@ -315,7 +325,6 @@ function makeTextarea(id) {
   textarea.required = true;
   return textarea;
 }
-
 
 
 

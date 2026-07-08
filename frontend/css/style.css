@@ -629,5 +629,23 @@ th { color: var(--muted); font-weight: 500; font-size: 13px; }
 .detail-panel p { margin: 4px 0; }
 .detail-panel .detail-label { color: var(--muted); display: inline-block; min-width: 110px; }
 
+.avatar-placeholder {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent-dark);
+}
 
+.profile-photo.avatar-placeholder {
+  width: 160px;
+  height: 160px;
+  border-radius: var(--radius);
+  font-size: 48px;
+}
 

@@ -18,7 +18,6 @@ async function loadCategories() {
       select.appendChild(option);
     });
   } catch (err) {
-    // Non-fatal: browsing still works without the category filter populated.
     console.error('Could not load categories:', err.message);
   }
 }
@@ -67,10 +66,7 @@ function buildWorkerCard(worker) {
   card.href = `worker-profile.html?id=${worker.id}`;
   card.className = 'worker-card' + (worker.availabilityStatus === 'available' ? ' available' : '');
 
-  const img = document.createElement('img');
-  img.src = worker.photoUrl || 'assets/placeholder.png';
-  img.alt = worker.name;
-  card.appendChild(img);
+  card.appendChild(buildAvatar(worker.name, worker.photoUrl, false));
 
   const body = document.createElement('div');
   body.className = 'worker-card-body';
@@ -100,15 +96,27 @@ function buildWorkerCard(worker) {
   return card;
 }
 
+function buildAvatar(name, photoUrl, isProfilePage) {
+  if (photoUrl) {
+    const img = document.createElement('img');
+    img.src = photoUrl;
+    img.alt = name;
+    if (isProfilePage) img.className = 'profile-photo';
+    return img;
+  }
+  const div = document.createElement('div');
+  div.className = isProfilePage ? 'avatar-placeholder profile-photo' : 'avatar-placeholder';
+  const initials = name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  div.textContent = initials;
+  return div;
+}
+
 function renderEmptyState(container, message) {
   const p = document.createElement('p');
   p.className = 'empty-state';
   p.textContent = message;
   container.appendChild(p);
 }
-
-
-
 
 
 
