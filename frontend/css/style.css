@@ -39,7 +39,7 @@ img { max-width: 100%; display: block; }
   outline-offset: 2px;
 }
 
-/* ============ Nav ============ */
+/*  Nav  */
 .nav {
   display: flex;
   justify-content: space-between;
@@ -55,7 +55,7 @@ img { max-width: 100%; display: block; }
 .nav-links a { color: var(--ink); font-size: 14px; }
 .nav-links a.active { color: var(--accent-dark); font-weight: 500; }
 
-/* ============ Buttons ============ */
+/*  Buttons  */
 .btn {
   display: inline-block;
   padding: 10px 18px;
@@ -85,11 +85,11 @@ img { max-width: 100%; display: block; }
 .btn-sm { padding: 6px 14px; font-size: 13px; }
 .btn-block { width: 100%; margin-top: 20px; }
 
-/* ============ Hero ============ */
+/*  Hero  */
 .hero { padding: 48px 32px 24px; max-width: 760px; }
 .hero-sub { color: var(--muted); font-size: 16px; }
 
-/* ============ Filter bar ============ */
+/* Filter bar */
 .filter-bar {
   display: flex;
   gap: 12px;
@@ -109,7 +109,7 @@ img { max-width: 100%; display: block; }
   border-color: var(--accent);
 }
 
-/* ============ Card grid (browse page) ============ */
+/*  Card grid (browse page)  */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -153,7 +153,7 @@ img { max-width: 100%; display: block; }
   margin-left: 6px;
 }
 
-/* ============ Auth forms (login/register/forgot) ============ */
+/*  Auth forms (login/register/forgot)  */
 .form-card {
   max-width: 420px;
   margin: 48px auto;
@@ -186,7 +186,7 @@ img { max-width: 100%; display: block; }
 .role-toggle .btn { flex: 1; }
 .role-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
-/* ============ Worker profile page ============ */
+/*  Worker profile page  */
 .profile-header {
   display: flex;
   gap: 24px;
@@ -293,7 +293,7 @@ img { max-width: 100%; display: block; }
 .review-card:last-child { border-bottom: none; }
 .review-meta { display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; }
 
-/* ============ Dashboards (shared: client/worker/admin) ============ */
+/*  Dashboards (shared: client/worker/admin)  */
 .dashboard-header { padding: 32px 32px 16px; }
 .dashboard-header p { color: var(--muted); }
 
@@ -439,7 +439,7 @@ img { max-width: 100%; display: block; }
 .approval-pending { background: var(--amber-bg); color: var(--amber); }
 .approval-approved { background: var(--accent-bg); color: var(--accent-dark); }
 
-/* ============ Booking cards (client + worker dashboards) ============ */
+/*  Booking cards (client + worker dashboards)  */
 .booking-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -509,7 +509,7 @@ img { max-width: 100%; display: block; }
 }
 .star-btn.filled { color: var(--amber); }
 
-/* ============ Admin dashboard ============ */
+/*  Admin dashboard  */
 .stat-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -547,17 +547,17 @@ img { max-width: 100%; display: block; }
 .admin-panel { padding: 24px 32px; }
 .admin-panel.hidden { display: none; }
 
-/* ============ Tables (dashboards) ============ */
+/*  Tables (dashboards)  */
 table { width: 100%; border-collapse: collapse; margin-top: 16px; }
 th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 14px; }
 th { color: var(--muted); font-weight: 500; font-size: 13px; }
 
-/* ============ Utility ============ */
+/*Utility  */
 .empty-state { color: var(--muted); padding: 24px 0; }
 .hidden { display: none !important; }
 .footer { padding: 24px 32px; color: var(--muted); font-size: 13px; text-align: center; }
 
-/* ============ Responsive ============ */
+/* Responsive  */
 @media (max-width: 640px) {
   .nav { padding: 12px 16px; }
   .hero { padding: 32px 16px 16px; }
