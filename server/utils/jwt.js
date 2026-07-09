@@ -5,9 +5,6 @@ const ACCESS_TOKEN_EXPIRY = '15m';
 const REFRESH_TOKEN_EXPIRY = '7d';
 
 function signAccessToken(user) {
-  // Payload stays minimal — just enough to authenticate and authorize.
-  // Never put sensitive data (password hash, etc.) in a JWT payload;
-  // it's base64-encoded, not encrypted, and readable by anyone who has the token.
   return jwt.sign(
     { userId: user.id, role: user.role },
     process.env.JWT_ACCESS_SECRET,

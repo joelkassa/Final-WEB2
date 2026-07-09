@@ -15,14 +15,13 @@ This is my final project for Web Programming II. It's a marketplace app where cl
 
 **Frontend**
 - Plain HTML/CSS/JS, no framework
-- Talks to the backend only through the REST API, nothing server-rendered
+- Talks to the backend through the REST API
 
 **Architecture**
 - MVC — `models` do the SQL queries, `controllers` handle the actual logic, `routes` just wire endpoints to controller functions. The frontend is basically the "view" and it's a separate app that just calls the API.
 
 ## Folder structure
 
-```
 Final-WEB2/
   server/
     config/          db connection setup
@@ -33,13 +32,13 @@ Final-WEB2/
     routes/          express routers
     uploads/         where uploaded portfolio images actually get saved
     server.js
-    .env             not committed, see setup steps below
+    .env             
   frontend/
     css/style.css
     js/              one JS file per page
     index.html, login.html, register.html, worker-profile.html,
     dashboard-client.html, dashboard-worker.html, dashboard-admin.html
-  README.md
+  README.md  
 ```
 
 ## How to run it
@@ -82,7 +81,7 @@ JWT_ACCESS_SECRET=some_long_random_string
 JWT_REFRESH_SECRET=a_different_long_random_string
 NODE_ENV=development
 CLIENT_ORIGIN=http://127.0.0.1:5500
-```
+
 
 To generate a random secret instead of making one up:
 ```bash
